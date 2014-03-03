@@ -5,7 +5,8 @@ module.exports = function(game, opts) {
 };
 
 function Skyhook(game, opts) {
-
+  this.game = game;
+  this.distance = opts.distance || 2;
   this.registry = game.plugins.get('voxel-registry');
   if (!this.registry) throw new Error('voxel-skyhook requires voxel-registry plugin');
 
@@ -14,7 +15,7 @@ function Skyhook(game, opts) {
 
 Skyhook.prototype.enable = function() {
   this.registry.registerBlock('skyhook', 
-      {texture: 'iron_block', // TODO
+      {texture: 'cauldron_bottom', // TODO
        displayName: 'Sky Hook',
        onUse: this.use.bind(this)
        });
@@ -24,6 +25,22 @@ Skyhook.prototype.disable = function() {
   // TODO
 };
 
+
+// http://en.wikipedia.org/wiki/Signum_function
+var signum = function(x) {
+  return (x > 0) - (x < 0);
+};
+
 Skyhook.prototype.use = function(held, target) {
-  console.log('USING SKYHOOK');
+  var avatar = this.game.plugins.get('voxel-player').avatar;
+
+  var x = Math.round(avatar.position.x) + signum(avatar.position.x) * this.distance;
+  var y = Math.round(avatar.position.y) + signum(avatar.position.y) * this.distance;
+  var z = Math.round(avatar.position.z) + signum(avatar.position.z) * this.distance;
+
+  console.log('USING SKYHOOK',x,y,z);
+
+  game.setBlock([x, y, z], this.registry.getBlockID('skyhook'));
+
+  return 1; // use up item
 };
