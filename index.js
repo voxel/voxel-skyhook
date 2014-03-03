@@ -37,10 +37,15 @@ Skyhook.prototype.use = function(held, target) {
 
   console.log('USING SKYHOOK',x,y,z);
 
-  if (!this.game.createBlock([x, y, z], this.registry.getBlockID('skyhook'))) {
-    console.log('skyhook occupied');
-    return undefined; // failed to place, nothing taken
+  if (this.game.getBlock([x, y, z]) !== 0) {
+    console.log('skyhook blocked');
+    return false;
   }
 
-  return 1; // use up item
+  if (!this.game.createBlock([x, y, z], this.registry.getBlockID('skyhook'))) {
+    console.log('skyhook occupied');
+    return false;
+  }
+
+  return true; // use up item
 };
