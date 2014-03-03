@@ -34,9 +34,9 @@ var signum = function(x) {
 Skyhook.prototype.use = function(held, target) {
   var avatar = this.game.plugins.get('voxel-player').avatar;
 
-  var x = Math.round(avatar.position.x) + signum(avatar.position.x) * this.distance;
-  var y = Math.round(avatar.position.y) + signum(avatar.position.y) * this.distance;
-  var z = Math.round(avatar.position.z) + signum(avatar.position.z) * this.distance;
+  var x = Math.round(avatar.position.x) + signum(avatar.rotation.x) * this.distance;
+  var y = Math.round(avatar.position.y) + signum(avatar.rotation.y) * this.distance;
+  var z = Math.round(avatar.position.z) + signum(avatar.rotation.z) * this.distance;
 
   console.log('USING SKYHOOK',x,y,z);
 
