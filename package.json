@@ -1,6 +1,6 @@
 {
   "name": "voxel-skyhook",
-  "description": "",
+  "description": "a block you can place midair (voxel.js plugin)",
   "version": "0.0.1",
   "repository": {
     "type": "git",
