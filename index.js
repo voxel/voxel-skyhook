@@ -42,7 +42,7 @@ Skyhook.prototype.use = function(held, target) {
     return false;
   }
 
-  if (!this.game.createBlock([x, y, z], this.registry.getBlockID('skyhook'))) {
+  if (!this.game.createBlock([x, y, z], this.registry.getBlockIndex('skyhook'))) {
     console.log('skyhook occupied');
     return false;
   }
