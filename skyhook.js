@@ -16,6 +16,7 @@ function Skyhook(game, opts) {
 Skyhook.prototype.enable = function() {
   this.registry.registerBlock('skyhook', 
       {texture: 'cauldron_bottom', // TODO
+       transparent: true,
        displayName: 'Sky Hook',
        onUse: this.use.bind(this)
        });
